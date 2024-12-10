@@ -1,0 +1,8 @@
+{
+    "python.terminal.activateEnvironment": false,
+    "python.terminal.activateEnvInCurrentTerminal": false,
+    "python.defaultInterpreterPath": "${workspaceFolder}/packages/bot/.venv/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src"
+    ]
+}

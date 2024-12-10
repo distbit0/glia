@@ -1,0 +1,27 @@
+[project]
+name = "bot"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Dist Bit", email = "adp01@pm.me"},
+]
+dependencies = [
+    "loguru>=0.7.3",
+    "PySnooper",
+    "python-dotenv>=1.0.1",
+    "requests",
+    "web3>=7.6.0",
+]
+requires-python = ">=3.13"
+license = {text = "UNLICENCE"}
+readme = "README.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

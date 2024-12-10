@@ -1,0 +1,10 @@
+**/node_modules
+**/.aider*
+**/.env
+
+node_modules
+.aider*
+.env
+
+.vsvode
+**/.vsvode
