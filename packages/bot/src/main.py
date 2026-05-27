@@ -1,5 +1,6 @@
 import os
 import json
+from pathlib import Path
 from web3 import Web3
 from loguru import logger
 from dotenv import load_dotenv
@@ -13,9 +14,11 @@ CONTRACT_ABI = [
     {"inputs":[{"internalType":"uint256","name":"_questionId","type":"uint256"},{"internalType":"string","name":"_answerText","type":"string"}],"name":"submitAnswer","outputs":[],"stateMutability":"nonpayable","type":"function"}
 ]
 
+BOT_ROOT = Path(__file__).resolve().parents[1]
+
 class GliaBot:
     def __init__(self):
-        load_dotenv()
+        load_dotenv(BOT_ROOT / ".env", override=True)
         
         # Initialize Web3
         self.w3 = Web3(Web3.HTTPProvider(os.getenv('RPC_URL')))
