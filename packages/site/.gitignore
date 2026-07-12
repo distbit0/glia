@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .aider*
 .env
+
+**/node_modules/
