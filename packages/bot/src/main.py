@@ -1,11 +1,12 @@
 import os
 import json
+import time
 from pathlib import Path
 from web3 import Web3
 from loguru import logger
 from dotenv import load_dotenv
 from openai import OpenAI
-import time
+from secret_service import load_signing_key
 
 # Load contract ABI
 CONTRACT_ABI = [
@@ -24,8 +25,7 @@ class GliaBot:
         self.w3 = Web3(Web3.HTTPProvider(os.getenv('RPC_URL')))
         
         # Set up account
-        self.private_key = os.getenv('PRIVATE_KEY')
-        self.account = self.w3.eth.account.from_key(self.private_key)
+        self.account = self.w3.eth.account.from_key(load_signing_key("glia-bot"))
         
         # Initialize contract
         self.contract = self.w3.eth.contract(
@@ -71,7 +71,7 @@ class GliaBot:
                 'gasPrice': self.w3.eth.gas_price
             })
             
-            signed_txn = self.w3.eth.account.sign_transaction(transaction, self.private_key)
+            signed_txn = self.account.sign_transaction(transaction)
             tx_hash = self.w3.eth.send_raw_transaction(signed_txn.raw_transaction)
             receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
             
